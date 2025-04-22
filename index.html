@@ -11,55 +11,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>SNYZ</title>
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
             font-family: 'Arial', sans-serif;
         }
 
-        body {
+        .first-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
             background: linear-gradient(135deg, #1a1a1a, #2c3e50);
-            min-height: 100vh;
-            display: flex;
-            color: white;
-            position: relative;
-            overflow: hidden;
+            z-index: 1;
         }
 
-        .owners {
-            position: absolute;
-            right: 30px;
-            top: 30px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .owners h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: #3498db;
-        }
-
-        .owners p {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #ecf0f1;
-        }
-
-        .center-content {
+        .welcome-text {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
+            width: 100%;
         }
 
         .welcome {
@@ -68,7 +52,6 @@
             color: #3498db;
             text-transform: uppercase;
             letter-spacing: 3px;
-            animation: fadeIn 2s ease-in-out;
         }
 
         .brand {
@@ -79,71 +62,61 @@
             background-clip: text;
             color: transparent;
             text-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
-            animation: pulse 2s infinite;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .owners {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            z-index: 3;
         }
 
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
+        .owners h2 {
+            color: #3498db;
+            font-size: 24px;
+            margin-bottom: 10px;
         }
 
-        .background-particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
+        .owners p {
+            color: #ecf0f1;
+            font-size: 18px;
+            line-height: 1.6;
         }
 
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            animation: float 20s infinite linear;
+        .scroll-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #3498db;
+            text-decoration: none;
+            z-index: 3;
+            text-align: center;
         }
 
-        @keyframes float {
-            0% {
-                transform: translateY(0) translateX(0);
-                opacity: 0;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(100vw);
-                opacity: 0;
-            }
+        .scroll-btn i {
+            font-size: 24px;
+            margin-top: 5px;
+        }
+
+        .content {
+            position: relative;
+            margin-top: 100vh;
+            background: linear-gradient(135deg, #1a1a1a, #2c3e50);
+            z-index: 2;
+            min-height: 100vh;
         }
 
         .characters-section {
-            min-height: 100vh;
             padding: 80px 20px;
-            background: linear-gradient(135deg, #1a1a1a, #2c3e50);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 100vh;
+            color: white;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .characters-title {
@@ -212,37 +185,14 @@
             color: #bdc3c7;
             line-height: 1.6;
         }
-
-        .scroll-down {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #3498db;
-            font-size: 16px;
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="background-particles">
-        <!-- Particles will be added by JavaScript -->
+    <div class="first-page">
+        <div class="welcome-text">
+            <div class="welcome">Welcome to</div>
+            <div class="brand">SNYZ</div>
+        </div>
     </div>
 
     <div class="owners">
@@ -251,64 +201,58 @@
         <p>- Ghali</p>
     </div>
 
-    <div class="center-content">
-        <div class="welcome">Welcome to</div>
-        <div class="brand">SNYZ</div>
-    </div>
-
-    <a href="#characters" class="scroll-down">
+    <a href="#characters" class="scroll-btn">
         Scroll Down
         <i class="fas fa-chevron-down"></i>
     </a>
 
-    <section id="characters" class="characters-section">
-        <h2 class="characters-title">Free Fire Characters</h2>
-        <div class="characters-grid">
-            <div class="character-card">
-                <div class="character-image">A</div>
-                <h3 class="character-name">Alok</h3>
-                <div class="character-ability">Drop the Beat</div>
-                <p class="character-description">Creates an aura that increases movement speed and restores HP. Perfect for both aggressive play and team support.</p>
+    <div class="content">
+        <section id="characters" class="characters-section">
+            <h2 class="characters-title">Free Fire Characters</h2>
+            <div class="characters-grid">
+                <div class="character-card">
+                    <div class="character-image">A</div>
+                    <h3 class="character-name">Alok</h3>
+                    <div class="character-ability">Drop the Beat</div>
+                    <p class="character-description">A world-famous DJ with the power to create healing auras. His ability increases movement speed and restores HP, making him perfect for both aggressive play and team support.</p>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-image">K</div>
+                    <h3 class="character-name">K</h3>
+                    <div class="character-ability">Master of All</div>
+                    <p class="character-description">A professor and jiu-jitsu expert who can boost max EP by 50 and switch between Psychology and Jiu-jitsu modes for different tactical advantages.</p>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-image">C</div>
+                    <h3 class="character-name">Chrono</h3>
+                    <div class="character-ability">Time Turner</div>
+                    <p class="character-description">A time-traveling warrior who can create a force field that blocks damage and increases movement speed. Essential for aggressive gameplay and team protection.</p>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-image">H</div>
+                    <h3 class="character-name">Hayato</h3>
+                    <div class="character-ability">Bushido</div>
+                    <p class="character-description">A legendary samurai whose Bushido art increases armor penetration as HP decreases. Perfect for aggressive players who aren't afraid to take fights.</p>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-image">W</div>
+                    <h3 class="character-name">Wukong</h3>
+                    <div class="character-ability">Camouflage</div>
+                    <p class="character-description">Based on the Monkey King, Wukong can transform into a bush to ambush enemies. Great for surprise attacks and stealth gameplay.</p>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-image">J</div>
+                    <h3 class="character-name">Jota</h3>
+                    <div class="character-ability">Sustained Raids</div>
+                    <p class="character-description">A parkour expert who instantly restores HP upon killing enemies with weapons. Perfect for aggressive players who chain multiple kills.</p>
+                </div>
             </div>
-
-            <div class="character-card">
-                <div class="character-image">K</div>
-                <h3 class="character-name">K</h3>
-                <div class="character-ability">Master of All</div>
-                <p class="character-description">Increases max EP by 50 and can switch between two modes: Psychology and Jiu-jitsu for EP recovery or EP conversion.</p>
-            </div>
-
-            <div class="character-card">
-                <div class="character-image">C</div>
-                <h3 class="character-name">Chrono</h3>
-                <div class="character-ability">Time Turner</div>
-                <p class="character-description">Creates a force field that blocks damage and increases movement speed. Essential for aggressive gameplay.</p>
-            </div>
-
-            <div class="character-card">
-                <div class="character-image">H</div>
-                <h3 class="character-name">Hayato</h3>
-                <div class="character-ability">Bushido</div>
-                <p class="character-description">Increases armor penetration as HP decreases. Perfect for aggressive players who like to take fights.</p>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // Create floating particles
-        function createParticles() {
-            const particlesContainer = document.querySelector('.background-particles');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + 'vw';
-                particle.style.top = Math.random() * 100 + 'vh';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        createParticles();
-    </script>
+        </section>
+    </div>
 </body>
 </html> 
